@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function GET(request) {
   const url = new URL(request.url);
-  const { id } = url.pathname.split('/').pop(); // Get product ID from URL
+  const id = url.pathname.split('/').pop(); // Get product ID from URL
 
   try {
     // Fetch product details from the Fake Store API by ID

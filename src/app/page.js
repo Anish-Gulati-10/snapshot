@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { heroSection } from "../../public/assets";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import CategoryTabs from "@/components/CategoryTabs";
+import {addToCart} from "@/firebase/addToCart";
 
 export default function Home() {
   const [trendingProducts, setTrendingProducts] = useState([]);
@@ -41,7 +41,7 @@ export default function Home() {
           <p className="text-lg">
             Discover the latest trends and styles in our collection.
           </p>
-          <Link href="/products">
+          <Link href="#category-tabs">
             <Button variant="default" className={"text-white"}>
               Shop Now
             </Button>
@@ -62,9 +62,10 @@ export default function Home() {
         <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
           {trendingProducts.map((product) => {
             return (
-              <div
+              <Link
+                href={`/product/${product.id}`}
                 key={product.id}
-                className="flex flex-col justify-between p-2 bg-white rounded-lg shadow-md">
+                className="bg-white flex flex-col justify-between p-2 rounded-lg shadow-md">
                 <Image
                   src={product.image}
                   alt={product.title}
@@ -86,12 +87,12 @@ export default function Home() {
                     <Button
                       variant="outline"
                       className="hover:!bg-primary hover:!text-white text-primary !border-primary"
-                      onClick={() => handleAddToCart(product)}>
+                      onClick={() => addToCart(product)}>
                       Add to Cart
                     </Button>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

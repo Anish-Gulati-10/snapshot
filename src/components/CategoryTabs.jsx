@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { Skeleton } from "./ui/skeleton";
 import { Button } from "./ui/button";
+import Link from "next/link";
+import { addToCart } from "@/firebase/addToCart";
 
 const categories = [
   { name: "all", icon: <Store strokeWidth={1.25} /> },
@@ -37,7 +39,7 @@ const CategoryTabs = () => {
   }, []);
 
   return (
-    <section className="w-full mt-6">
+    <section className="w-full mt-6" id="category-tabs">
       <h1 className="text-3xl font-bold mb-8 text-center">
         All the Good Stuff, Sorted
       </h1>
@@ -80,7 +82,8 @@ const CategoryTabs = () => {
             ) : (
               <div className="grid grid-cols-2 lg:grid-cols-4 md:gap-6 gap-3">
                 {products.map((product) => (
-                  <div
+                  <Link
+                    href={`/product/${product.id}`}
                     key={product.id}
                     className="bg-[#f8fafe] shadow-sm rounded-lg overflow-hidden flex flex-col items-center md:p-4 p-2 text-black">
                     <img
@@ -94,17 +97,17 @@ const CategoryTabs = () => {
                     <div className="flex md:flex-row flex-col justify-between items-center w-full mt-auto">
                       <p className="text-base font-bold">${product.price}</p>
                       <Button
-                        onClick={console.log("add")}
+                        onClick={() => addToCart(product)}
                         className={"md:flex hidden !text-white"}>
                         Add to Cart
-                      </Button>{" "}
+                      </Button>
                     </div>
                     <Button
-                      onClick={console.log("add")}
+                      onClick={() => addToCart(product)}
                       className={"md:hidden w-full mt-2 !text-white"}>
                       Add to Cart
                     </Button>
-                  </div>
+                  </Link>
                 ))}
               </div>
             )}
