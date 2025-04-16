@@ -76,10 +76,12 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.623 0.214 259.815);
+  --navbar: oklch(0.141 0.005 285.823);
+  --navbar-foreground: #F9FAFB;
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
+  --background: #292929;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
