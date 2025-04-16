@@ -1,5 +1,5 @@
 "use client"
-import { LoginForm } from '@/components/login-form'
+import { LoginForm } from '@/components/LoginForm'
 import { auth } from '@/firebase/firebase';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
