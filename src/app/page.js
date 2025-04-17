@@ -47,12 +47,12 @@ export default function Home() {
       </div>
       <div className="bg-[#d2dafc] rounded-2xl w-full shadow-sm min-h-[400px] border border-violet-200 p-6 flex lg:flex-row flex-col gap-4 items-center">
         <div className="lg:w-1/5 w-full text-primary space-y-2.5">
-          <p className="font-semibold text-sm">WHAT'S HOT 🔥</p>
+          <p className="font-semibold text-sm">WHAT&apos;`S HOT 🔥</p>
           <h2 className="text-2xl font-bold">
-            Don't miss out on this week's stars
+            Don&apos;`t miss out on this week&apos;`s stars
           </h2>
           <p className="text-lg">
-            These are flying off the shelves — grab yours before they're gone.
+            These are flying off the shelves — grab yours before they&apos;`re gone.
           </p>
         </div>
         <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
