@@ -39,13 +39,13 @@ const CategoryTabs = () => {
   }, []);
 
   return (
-    <section className="w-full mt-6" id="category-tabs">
-      <h1 className="text-3xl font-bold mb-8 text-center">
+    <section className="w-full mt-8" id="category-tabs">
+      <h1 className="text-3xl font-bold mb-10 text-center">
         All the Good Stuff, Sorted
       </h1>
 
       <Tabs defaultValue="all" className="w-full">
-        <TabsList className="flex gap-4 justify-center mb-6 w-full flex-wrap">
+        <TabsList className="flex gap-4 justify-center mb-8 w-full flex-wrap">
           {categories.map((category) => (
             <TabsTrigger
               key={category.name}
@@ -63,7 +63,7 @@ const CategoryTabs = () => {
         {categories.map((category) => (
           <TabsContent key={category.name} value={category.name}>
             {loading ? (
-              <div className="grid grid-cols-2 lg:grid-cols-4 md:gap-6 gap-3">
+              <div className="grid grid-cols-2 lg:grid-cols-4 md:gap-8 gap-4">
                 {Array.from({ length: 12 }).map((_, index) => (
                   <div
                     key={index}
@@ -80,7 +80,7 @@ const CategoryTabs = () => {
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-2 lg:grid-cols-4 md:gap-6 gap-3">
+              <div className="grid grid-cols-2 lg:grid-cols-4 md:gap-8 gap-4">
                 {products.map((product) => (
                   <Link
                     href={`/product/${product.id}`}
@@ -89,7 +89,7 @@ const CategoryTabs = () => {
                     <img
                       src={product.image}
                       alt={product.title}
-                      className="w-full md:h-80 object-center mb-4"
+                      className="w-4/5 md:h-80 object-center mb-4"
                     />
                     <h2 className="text-lg font-semibold text-center mb-4">
                       {product.title}

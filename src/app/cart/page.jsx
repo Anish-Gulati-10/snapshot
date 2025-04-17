@@ -21,7 +21,7 @@ const CartPage = () => {
       if (!user) {
         console.warn("No user signed in");
         setLoading(false);
-        toast.error("Please sign in to view your cart.",{actions:[{label:"Sign In",onClick:()=>router.push("/signin")}]});
+        toast.error("Please sign in to view your cart.",{actions:[{label:"Sign In",onClick:()=>router.push("/auth/signin")}]});
         return;
       }
   
@@ -105,7 +105,7 @@ const CartPage = () => {
   const removeFromCart = async (product) => {
     const user = auth.currentUser;
     if (!user) {
-      router.push("/signin");
+      router.push("/auth/signin");
       return;
     }
 

@@ -23,7 +23,7 @@ const Page = () => {
           actions: [
             {
               label: "Sign In",
-              onClick: () => router.push("/signin"),
+              onClick: () => router.push("/auth/signin"),
             },
           ],
         });
@@ -54,7 +54,7 @@ const Page = () => {
   const removeFromWishlist = async (product) => {
     const user = auth.currentUser;
     if (!user) {
-      router.push("/signin");
+      router.push("/auth/signin");
       return;
     }
 
