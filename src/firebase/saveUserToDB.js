@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 import { firestore } from "./firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 /**
  * Function to save user data in Firestore
@@ -12,6 +12,13 @@ export const saveUserToDB = async (user, firstName = "User", lastName = "") => {
   try {
     // Create a reference to the user's document in Firestore
     const userRef = doc(firestore, "users", user.uid);
+
+    const docSnap = await getDoc(userRef);
+
+    if (docSnap.exists()) {
+      console.log("User already exists in Firestore.");
+      return;
+    }
 
     // Check if firstName and lastName are provided (for email/password sign-up)
     const userData = {

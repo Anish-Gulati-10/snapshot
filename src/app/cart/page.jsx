@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { emptyCart } from "../../../public/assets";
 import { Minus, Plus, Trash } from "lucide-react";
+import { onAuthStateChanged } from "firebase/auth";
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
@@ -16,15 +17,19 @@ const CartPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchCart = async () => {
-      const user = auth.currentUser;
-      console.log("use",user)
-
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        console.warn("No user signed in");
+        setLoading(false);
+        toast.error("Please sign in to view your cart.",{actions:[{label:"Sign In",onClick:()=>router.push("/signin")}]});
+        return;
+      }
+  
       try {
         const userRef = doc(firestore, "users", user.uid);
         const userDoc = await getDoc(userRef);
         const userData = userDoc.data();
-
+  
         if (userData && userData.cart) {
           setCart(userData.cart);
         }
@@ -34,9 +39,9 @@ const CartPage = () => {
       } finally {
         setLoading(false);
       }
-    };
-
-    fetchCart();
+    });
+  
+    return () => unsubscribe(); // Clean up listener on unmount
   }, []);
 
   if (cart.length === 0) {
