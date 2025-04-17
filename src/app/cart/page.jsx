@@ -174,7 +174,7 @@ const CartPage = () => {
               <div className="flex gap-2 items-center">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Button onClick={() => updateQuantity(product, "decrease")} className={"text-white"}>
+                    <Button onClick={() => updateQuantity(product, "decrease")} className={"text-white"} disabled={product.qty <= 1}>
                       <Minus className="h-4 w-4" />
                     </Button>
                     <span>{product.qty}</span>

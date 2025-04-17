@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SnapShop E-Commerce
 
-## Getting Started
+SnapShop is a demo e-commerce application that allows users to browse products, add them to the cart, and place orders. The application is built with **Next.js**, **Firebase Authentication**, and **Firestore** for data storage.
 
-First, run the development server:
+## Features
+
+- **User Authentication**: 
+  - Sign in with **Email & Password** or **Google**.
+- **Product Browsing**:
+  - View all products on the homepage.
+  - View individual product details on product pages.
+- **Cart Management**:
+  - Add products to the cart from both the homepage and the product page.
+  - Edit product quantity directly in the cart.
+  - Increment product quantity by 1 when the "Add to Cart" button is clicked multiple times.
+- **Wishlist**:
+  - Add or remove products from the wishlist.
+- **Checkout**:
+  - Provide shipping details and UPI for payment during checkout.
+  - Place an order and see it in your **Order History** in the profile.
+
+---
+
+## Prerequisites
+
+1. **Node.js**: Make sure you have **Node.js** installed (version 16.x.x or higher).
+2. **Firebase Account**: You need a Firebase project with **Firestore** and **Authentication** set up.
+
+---
+
+## Setup
+
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/snapshop.git
+cd snapshop
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+Run the following command to install the required dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 3. Setup Firebase
+#### Create Firebase Project: Go to Firebase Console, create a project, and set up Firestore and Authentication.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### Enable Authentication:
+In Firebase Console, navigate to Authentication > Sign-in method.
+Enable Email/Password and Google sign-in methods.
 
-## Learn More
+#### Firestore Setup: Create a collection called users in Firestore where user data and cart will be stored.
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Configure Firebase in Your Project
+Create a `.env.local` file at the root of your project and add your Firebase config variables:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-auth-domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-storage-bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your-measurement-id
+```
+Replace the placeholders with your actual Firebase configuration details. You can find these in the Firebase Console under Project settings > General > Your apps.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Run the Project
+To start the development server:
+```bash
+npm run dev
+```
+This will run the project on http://localhost:3000.
 
-## Deploy on Vercel
+## Application Flow
+### Authentication
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### 1. Sign Up / Sign In:
+ - Users can sign up using Email/Password or Google sign-in methods.
+ - Once signed in, users will be redirected to the homepage.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### 2. Browsing Products
+- Users can view all available products on the homepage.
+
+- Users can click on a product to view its details on the Product Page.
+
+#### 3. Cart Management
+- Adding Products: Users can add products to their cart from both the Homepage and the Product Page.
+
+- Quantity Editing: Users can edit the quantity of products directly in the Cart Page.
+
+#### 4. Wishlist
+- Users can add or remove products from their Wishlist.
+
+#### 5. Checkout
+- On the Checkout Page, users will be asked to provide shipping details (address, UPI ID, etc.).
+
+-After placing the order, the order will be saved to the user's Order History.
+
+#### 6. Order History
+- Once the order is placed, it will appear in the Order History section of the user's profile.
+
+## Firebase Functions in the Project
+### Authentication:
+- Used for user sign-in using either Email/Password or Google.
+
+### Firestore:
+
+- Stores user data (including cart, wishlist, and order history).
+
+- The cart and order history are stored in Firestore to persist data across sessions.
+
+- Each user’s orderHistory is an array where all their past orders are saved.
