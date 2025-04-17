@@ -46,7 +46,7 @@ const CartPage = () => {
 
   if (cart.length === 0) {
     return (
-      <section className="min-h-[screen-80px] flex flex-col items-center justify-center p-4 gap-3">
+      <section className="min-h-[calc(100vh-80px)] flex flex-col items-center justify-center p-4 gap-3">
         <Image
           src={emptyCart}
           alt="Empty Cart"
@@ -134,37 +134,18 @@ const CartPage = () => {
   if (loading) {
     return (
       <section className="p-4 max-w-7xl mx-auto">
+        
         <h1 className="text-4xl font-bold mb-8 mt-2">
-          <Skeleton width="200px" height="30px" />
+          <Skeleton className={"w-[200px] h-9 dark:bg-gray-100/50"} />
         </h1>
         <div className="grid grid-cols-1 md:gap-6 gap-3">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <div
-              key={index}
-              className="bg-white p-4 rounded-lg shadow-md flex flex-col md:flex-row md:items-center gap-8 text-black">
-              <Skeleton width={120} height={120} className="mb-4 mx-auto" />
-              <div className="flex-1 flex flex-col gap-8">
-                <div className="flex md:items-center md:justify-between md:flex-row flex-col gap-2">
-                  <Skeleton width="80%" height="20px" />
-                  <Skeleton width="40%" height="25px" />
-                </div>
-                <div className="flex gap-2 items-center">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Skeleton width="25px" height="25px" />
-                      <Skeleton width="50px" height="25px" />
-                      <Skeleton width="25px" height="25px" />
-                    </div>
-                  </div>
-                  <Skeleton width="30px" height="30px" />
-                </div>
-              </div>
-            </div>
+          {Array.from({ length: 3 }).map((_, index) => (
+            <Skeleton key={index} className="mb-4 dark:bg-gray-100/50 w-full h-[180px]" />
           ))}
         </div>
         <div className="mt-8 md:text-right">
-          <Skeleton width="100px" height="30px" />
-          <Skeleton width="150px" height="40px" />
+          <Skeleton className="w-[100px] h-7"/>
+          <Skeleton className="w-[100px] h-8"/>
         </div>
       </section>
     );

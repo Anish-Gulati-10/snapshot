@@ -98,7 +98,6 @@ const checkWishlist = async (product) => {
     // Get the current wishlist from Firestore
     const userDoc = await getDoc(userRef);
     if (!userDoc.exists()) {
-      toast.error("User not found in the database.", {description:"Please sign in again."});
       return false;
     }
     const userData = userDoc.data();

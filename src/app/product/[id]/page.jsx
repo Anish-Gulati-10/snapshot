@@ -10,7 +10,8 @@ import {
   removeFromWishlist,
 } from "@/firebase/wishlist";
 import Link from "next/link";
-import { Skeleton } from "@/components/ui/skeleton";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase/firebase";
 
 const Page = ({ params }) => {
   const { id } = React.use(params); // Fetching the product ID from the URL parameters
@@ -35,8 +36,31 @@ const Page = ({ params }) => {
   }, [id]);
 
   useEffect(() => {
-    setIsInWishlist(checkWishlist(product));
-    setIsInCart(checkCart(product));
+    if (!product) return;
+  
+    const checkStatus = async () => {
+      const user = auth.currentUser;
+      if (!user) {
+        setIsInWishlist(false);
+        setIsInCart(false);
+        return;
+      }
+  
+      const [wishlistStatus, cartStatus] = await Promise.all([
+        checkWishlist(product),
+        checkCart(product), // make sure checkCart is also async if it uses Firestore
+      ]);
+  
+      setIsInWishlist(Boolean(wishlistStatus));
+      setIsInCart(Boolean(cartStatus));
+    };
+  
+    // Wait for Firebase auth state
+    const unsubscribe = onAuthStateChanged(auth, () => {
+      checkStatus();
+    });
+  
+    return () => unsubscribe();
   }, [product]);
 
   const handleWishlistClick = () => {
