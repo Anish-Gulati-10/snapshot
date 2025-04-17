@@ -26,10 +26,6 @@ export default function Home() {
     fetchTrendingProducts();
   }, []);
 
-  const handleAddToCart = (product) => {
-    // Logic to add the product to the cart
-    console.log("Added to cart:", product);
-  };
 
   return (
     <section className="p-6 max-w-[1680px] mx-auto flex flex-col gap-6 overflow-clip">
