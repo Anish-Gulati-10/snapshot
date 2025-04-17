@@ -96,7 +96,7 @@ This will run the project on http://localhost:3000.
 #### 5. Checkout
 - On the Checkout Page, users will be asked to provide shipping details (address, UPI ID, etc.).
 
--After placing the order, the order will be saved to the user's Order History.
+- After placing the order, the order will be saved to the user's Order History.
 
 #### 6. Order History
 - Once the order is placed, it will appear in the Order History section of the user's profile.
